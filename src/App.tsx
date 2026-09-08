@@ -490,7 +490,7 @@ function Contact() {
               GitHub
             </a>
             <a
-              href="mailto:hello@siyuanjun.dev"
+              href="mailto:siyuanjunr@qq.com"
               className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all hover:scale-105 glow-gold"
               style={{ background: 'var(--color-kinpaku)', color: 'var(--color-lacquer)', borderRadius: '2px' }}
             >
@@ -521,7 +521,7 @@ function Footer() {
           <a href="https://github.com/siYuanJun" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[var(--color-kinpaku)]" style={{ color: 'var(--color-faint)' }}>
             <GitBranch size={16} />
           </a>
-          <a href="mailto:hello@siyuanjun.dev" className="transition-colors hover:text-[var(--color-kinpaku)]" style={{ color: 'var(--color-faint)' }}>
+          <a href="mailto:siyuanjunr@qq.com" className="transition-colors hover:text-[var(--color-kinpaku)]" style={{ color: 'var(--color-faint)' }}>
             <Mail size={16} />
           </a>
         </div>
