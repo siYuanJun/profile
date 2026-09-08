@@ -30,7 +30,7 @@ const PROJECTS = [
   },
   {
     name: 'Skill Flow Viz',
-    desc: 'Skill 工程可视化：把 SKILL.md 的执行脉络翻译为流程图 + 时间轴 + 信息卡',
+    desc: 'Skill 工程可视化：把 SKILL.md 的执行脉络翻译为流程图 + 时间轴 + 信息卡，几秒掌握每个 Skill 怎么跑',
     tags: ['Visualization', 'Skill Engineering'],
     url: 'https://github.com/siYuanJun/skill-flow-viz',
     color: '#b8941f',
@@ -63,18 +63,18 @@ const PROJECTS = [
 ]
 
 const SKILLS = [
-  { name: 'AI Agent', icon: Brain, level: 'expert' },
-  { name: 'Skill 工程', icon: Layers, level: 'expert' },
-  { name: 'Harness 编排', icon: Workflow, level: 'expert' },
-  { name: 'Claude Code', icon: Terminal, level: 'expert' },
-  { name: 'Python', icon: Code2, level: 'advanced' },
-  { name: 'TypeScript', icon: Code2, level: 'advanced' },
-  { name: 'React', icon: Cpu, level: 'advanced' },
-  { name: 'FastAPI', icon: Zap, level: 'advanced' },
-  { name: 'LLM / RAG', icon: Database, level: 'advanced' },
-  { name: 'Three.js', icon: Sparkles, level: 'intermediate' },
-  { name: 'Vue', icon: Cpu, level: 'intermediate' },
-  { name: 'Git', icon: GitBranch, level: 'expert' },
+  { name: 'AI Agent', icon: Brain, level: '精通' },
+  { name: 'Skill 工程', icon: Layers, level: '精通' },
+  { name: 'Harness 编排', icon: Workflow, level: '精通' },
+  { name: 'Claude Code', icon: Terminal, level: '精通' },
+  { name: 'Python', icon: Code2, level: '熟练' },
+  { name: 'TypeScript', icon: Code2, level: '熟练' },
+  { name: 'React', icon: Cpu, level: '熟练' },
+  { name: 'FastAPI', icon: Zap, level: '熟练' },
+  { name: 'LLM / RAG', icon: Database, level: '熟练' },
+  { name: 'Three.js', icon: Sparkles, level: '了解' },
+  { name: 'Vue', icon: Cpu, level: '了解' },
+  { name: 'Git', icon: GitBranch, level: '精通' },
 ]
 
 const DIRECTIONS = [
@@ -99,10 +99,8 @@ const DIRECTIONS = [
 ]
 
 /* ============================================================
-   组件
+   导航栏
    ============================================================ */
-
-// 导航栏
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
@@ -118,17 +116,17 @@ function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? 'rgba(8, 7, 5, 0.9)' : 'transparent',
+        background: scrolled ? 'rgba(8, 7, 5, 0.92)' : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         borderBottom: scrolled ? '1px solid var(--color-rule)' : '1px solid transparent',
       }}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 flex items-center justify-center" style={{ background: 'var(--color-kinpaku)', borderRadius: '2px' }}>
-            <Brain size={18} style={{ color: 'var(--color-lacquer)' }} />
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 flex items-center justify-center" style={{ background: 'var(--color-kinpaku)', borderRadius: '2px' }}>
+            <Brain size={20} style={{ color: 'var(--color-lacquer)' }} />
           </div>
-          <span className="text-lg font-medium" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+          <span className="text-xl font-medium tracking-wide" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
             Lujo
           </span>
         </div>
@@ -147,10 +145,10 @@ function Navbar() {
             href="https://github.com/siYuanJun"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-1.5 text-sm transition-all hover:opacity-80"
+            className="flex items-center gap-2 px-5 py-2 text-sm transition-all hover:opacity-80"
             style={{ border: '1px solid var(--color-rule-strong)', borderRadius: '2px', color: 'var(--color-champagne)' }}
           >
-            <GitBranch size={14} />
+            <GitBranch size={15} />
             GitHub
           </a>
         </div>
@@ -159,7 +157,9 @@ function Navbar() {
   )
 }
 
-// Hero 区
+/* ============================================================
+   Hero 区
+   ============================================================ */
 function Hero() {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
@@ -167,24 +167,20 @@ function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
-      {/* 背景光晕 */}
-      <motion.div
-        style={{ y, opacity }}
-        className="absolute inset-0 pointer-events-none"
-      >
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(212, 175, 55, 0.08)' }} />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(74, 157, 143, 0.06)' }} />
+      <motion.div style={{ y, opacity }} className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[140px]" style={{ background: 'rgba(212, 175, 55, 0.1)' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[140px]" style={{ background: 'rgba(74, 157, 143, 0.08)' }} />
       </motion.div>
 
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6"
+          className="mb-10"
         >
-          <span className="tag tag-gold">
-            <Sparkles size={10} className="mr-1.5" />
+          <span className="tag tag-gold text-xs px-4 py-1.5">
+            <Sparkles size={12} className="mr-2 inline" />
             AI Agent 工程实践者
           </span>
         </motion.div>
@@ -193,7 +189,7 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-5xl md:text-7xl font-light mb-6 leading-tight"
+          className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 leading-[1.15]"
           style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)', letterSpacing: '-0.02em' }}
         >
           热爱不止于代码
@@ -205,23 +201,23 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-lg md:text-xl mb-10 max-w-2xl mx-auto"
-          style={{ color: 'var(--color-graphite-light)', lineHeight: 1.8 }}
+          className="text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed"
+          style={{ color: 'var(--color-graphite-light)' }}
         >
-          专注 <span style={{ color: 'var(--color-kinpaku)' }}>Skill 工程</span> 与{' '}
-          <span style={{ color: 'var(--color-patina)' }}>Harness 编排</span>
-          ——把 AI 从「单次对话助手」推进为「可编排、可治理、可复用」的工程化生产力。
+          专注 <span className="font-medium" style={{ color: 'var(--color-kinpaku)' }}>Skill 工程</span> 与{' '}
+          <span className="font-medium" style={{ color: 'var(--color-patina)' }}>Harness 编排</span>
+          ，把 AI 从「单次对话助手」推进为「可编排、可治理、可复用」的工程化生产力。
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="flex flex-wrap items-center justify-center gap-4"
+          className="flex flex-wrap items-center justify-center gap-5"
         >
           <a
             href="#projects"
-            className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all hover:scale-105 glow-gold"
+            className="flex items-center gap-2 px-8 py-3.5 text-sm font-medium transition-all hover:scale-105 glow-gold"
             style={{ background: 'var(--color-kinpaku)', color: 'var(--color-lacquer)', borderRadius: '2px' }}
           >
             查看精选项目
@@ -231,7 +227,7 @@ function Hero() {
             href="https://github.com/siYuanJun"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all hover:opacity-80"
+            className="flex items-center gap-2 px-8 py-3.5 text-sm font-medium transition-all hover:opacity-80"
             style={{ border: '1px solid var(--color-rule-strong)', color: 'var(--color-champagne)', borderRadius: '2px' }}
           >
             <GitBranch size={16} />
@@ -240,47 +236,46 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* 向下滚动提示 */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <ChevronDown size={24} style={{ color: 'var(--color-graphite)' }} />
+        <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+          <ChevronDown size={28} style={{ color: 'var(--color-graphite)' }} />
         </motion.div>
       </motion.div>
     </section>
   )
 }
 
-// 核心方向
+/* ============================================================
+   核心方向
+   ============================================================ */
 function About() {
   return (
-    <section id="about" className="py-24 px-6">
+    <section id="about" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="text-center mb-16"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-8" style={{ background: 'var(--color-kinpaku)' }} />
-            <h2 className="text-3xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+          <div className="flex items-center justify-center gap-4 mb-5">
+            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
+            <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
               核心方向
             </h2>
+            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
           </div>
-          <p className="text-base max-w-2xl" style={{ color: 'var(--color-graphite-light)' }}>
+          <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-graphite-light)' }}>
             三个方向，一条主线——让 AI 真正工程化、可复用、可治理。
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {DIRECTIONS.map((d, i) => (
             <motion.div
               key={i}
@@ -288,23 +283,23 @@ function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
-              whileHover={{ y: -4 }}
-              className="panel p-8 relative overflow-hidden group"
+              whileHover={{ y: -6 }}
+              className="panel p-10 relative overflow-hidden group"
             >
               <div
                 className="absolute top-0 left-0 w-full h-0.5 transition-all duration-300 group-hover:h-1"
                 style={{ background: d.color }}
               />
               <div
-                className="w-12 h-12 flex items-center justify-center mb-5"
+                className="w-14 h-14 flex items-center justify-center mb-7"
                 style={{ background: `${d.color}15`, borderRadius: '2px' }}
               >
-                <d.icon size={24} style={{ color: d.color }} />
+                <d.icon size={28} style={{ color: d.color }} />
               </div>
-              <h3 className="text-xl font-medium mb-3" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+              <h3 className="text-2xl font-medium mb-4" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
                 {d.title}
               </h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--color-graphite-light)' }}>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--color-graphite-light)', lineHeight: '1.9' }}>
                 {d.desc}
               </p>
             </motion.div>
@@ -315,29 +310,32 @@ function About() {
   )
 }
 
-// 精选项目
+/* ============================================================
+   精选项目
+   ============================================================ */
 function Projects() {
   return (
-    <section id="projects" className="py-24 px-6" style={{ background: 'var(--color-lacquer-deep)' }}>
+    <section id="projects" className="py-28 px-6" style={{ background: 'var(--color-lacquer-deep)' }}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="text-center mb-16"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-8" style={{ background: 'var(--color-patina)' }} />
-            <h2 className="text-3xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+          <div className="flex items-center justify-center gap-4 mb-5">
+            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
+            <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
               精选项目
             </h2>
+            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
           </div>
-          <p className="text-base max-w-2xl" style={{ color: 'var(--color-graphite-light)' }}>
+          <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-graphite-light)' }}>
             从方法论到工具，从数字员工到个人辅助——每个项目都是 AI 工程化的一次实践。
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {PROJECTS.map((p, i) => (
             <motion.a
               key={i}
@@ -347,35 +345,35 @@ function Projects() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -4 }}
-              className="panel p-6 relative overflow-hidden group block"
+              transition={{ delay: i * 0.08 }}
+              whileHover={{ y: -6 }}
+              className="panel p-8 relative overflow-hidden group block"
             >
               {p.featured && (
-                <div className="absolute top-4 right-4">
-                  <span className="tag tag-gold">精选</span>
+                <div className="absolute top-6 right-6 z-10">
+                  <span className="tag tag-gold text-[10px] px-2.5 py-1">精选</span>
                 </div>
               )}
-              <div className="flex items-start gap-4 mb-4">
+              <div className="flex items-start gap-5 mb-6">
                 <div
-                  className="w-11 h-11 flex items-center justify-center flex-shrink-0"
+                  className="w-12 h-12 flex items-center justify-center flex-shrink-0"
                   style={{ background: `${p.color}15`, borderRadius: '2px' }}
                 >
-                  <p.icon size={20} style={{ color: p.color }} />
+                  <p.icon size={24} style={{ color: p.color }} />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-medium mb-1 flex items-center gap-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+                <div className="flex-1 min-w-0 pr-12">
+                  <h3 className="text-xl font-medium mb-3 flex items-center gap-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
                     {p.name}
                     <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" style={{ color: p.color }} />
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--color-graphite-light)' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--color-graphite-light)', lineHeight: '1.8' }}>
                     {p.desc}
                   </p>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {p.tags.map((tag, j) => (
-                  <span key={j} className="tag" style={{ color: 'var(--color-graphite-light)', borderColor: 'var(--color-rule)', background: 'transparent' }}>
+                  <span key={j} className="tag text-[11px] px-3 py-1" style={{ color: 'var(--color-graphite-light)', borderColor: 'var(--color-rule)', background: 'transparent' }}>
                     {tag}
                   </span>
                 ))}
@@ -392,17 +390,17 @@ function Projects() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-10 text-center"
+          className="mt-14 text-center"
         >
           <a
             href="https://github.com/siYuanJun?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm transition-colors hover:text-[var(--color-kinpaku)]"
+            className="inline-flex items-center gap-2 text-base transition-colors hover:text-[var(--color-kinpaku)]"
             style={{ color: 'var(--color-graphite-light)' }}
           >
             查看全部仓库
-            <ArrowRight size={14} />
+            <ArrowRight size={16} />
           </a>
         </motion.div>
       </div>
@@ -410,44 +408,47 @@ function Projects() {
   )
 }
 
-// 技术栈
+/* ============================================================
+   技术栈
+   ============================================================ */
 function Skills() {
   return (
-    <section id="skills" className="py-24 px-6">
+    <section id="skills" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="text-center mb-16"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-8" style={{ background: '#b8941f' }} />
-            <h2 className="text-3xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+          <div className="flex items-center justify-center gap-4 mb-5">
+            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
+            <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
               技术栈
             </h2>
+            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
           </div>
-          <p className="text-base max-w-2xl" style={{ color: 'var(--color-graphite-light)' }}>
+          <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-graphite-light)' }}>
             从 AI Agent 工程到全栈开发，工具服务于目标。
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {SKILLS.map((s, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+              transition={{ delay: i * 0.04 }}
               whileHover={{ scale: 1.05 }}
-              className="panel p-5 flex items-center gap-3"
+              className="panel p-6 flex items-center gap-4"
             >
-              <s.icon size={20} style={{ color: 'var(--color-kinpaku)', flexShrink: 0 }} />
+              <s.icon size={24} style={{ color: 'var(--color-kinpaku)', flexShrink: 0 }} />
               <div className="min-w-0">
-                <div className="text-sm font-medium truncate" style={{ color: 'var(--color-champagne)' }}>{s.name}</div>
-                <div className="text-[10px]" style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-mono)' }}>
-                  {s.level === 'expert' ? '精通' : s.level === 'advanced' ? '熟练' : '了解'}
+                <div className="text-base font-medium truncate" style={{ color: 'var(--color-champagne)' }}>{s.name}</div>
+                <div className="text-[11px] mt-0.5" style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-mono)' }}>
+                  {s.level}
                 </div>
               </div>
             </motion.div>
@@ -458,43 +459,45 @@ function Skills() {
   )
 }
 
-// 联系方式
+/* ============================================================
+   联系方式
+   ============================================================ */
 function Contact() {
   return (
-    <section id="contact" className="py-24 px-6" style={{ background: 'var(--color-lacquer-deep)' }}>
+    <section id="contact" className="py-28 px-6" style={{ background: 'var(--color-lacquer-deep)' }}>
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-1 h-8" style={{ background: 'var(--color-kinpaku)' }} />
-            <h2 className="text-3xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="w-12 h-px" style={{ background: 'var(--color-kinpaku)' }} />
+            <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
               保持联系
             </h2>
-            <div className="w-1 h-8" style={{ background: 'var(--color-kinpaku)' }} />
+            <div className="w-12 h-px" style={{ background: 'var(--color-kinpaku)' }} />
           </div>
-          <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--color-graphite-light)', lineHeight: 1.8 }}>
+          <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--color-graphite-light)' }}>
             对 AI Agent 工程、Skill 工程、Harness 编排感兴趣？欢迎交流，一起探索 AI 的工程化未来。
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-5">
             <a
               href="https://github.com/siYuanJun"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all hover:scale-105"
+              className="flex items-center gap-2.5 px-8 py-3.5 text-sm font-medium transition-all hover:scale-105"
               style={{ border: '1px solid var(--color-rule-strong)', color: 'var(--color-champagne)', borderRadius: '2px' }}
             >
-              <GitBranch size={16} />
+              <GitBranch size={18} />
               GitHub
             </a>
             <a
               href="mailto:siyuanjunr@qq.com"
-              className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all hover:scale-105 glow-gold"
+              className="flex items-center gap-2.5 px-8 py-3.5 text-sm font-medium transition-all hover:scale-105 glow-gold"
               style={{ background: 'var(--color-kinpaku)', color: 'var(--color-lacquer)', borderRadius: '2px' }}
             >
-              <Mail size={16} />
+              <Mail size={18} />
               发送邮件
             </a>
           </div>
@@ -504,14 +507,16 @@ function Contact() {
   )
 }
 
-// Footer
+/* ============================================================
+   Footer
+   ============================================================ */
 function Footer() {
   return (
-    <footer className="py-8 px-6" style={{ borderTop: '1px solid var(--color-rule)' }}>
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 flex items-center justify-center" style={{ background: 'var(--color-kinpaku)', borderRadius: '2px' }}>
-            <Brain size={14} style={{ color: 'var(--color-lacquer)' }} />
+    <footer className="py-10 px-6" style={{ borderTop: '1px solid var(--color-rule)' }}>
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
+        <div className="flex items-center gap-3">
+          <div className="w-7 h-7 flex items-center justify-center" style={{ background: 'var(--color-kinpaku)', borderRadius: '2px' }}>
+            <Brain size={16} style={{ color: 'var(--color-lacquer)' }} />
           </div>
           <span className="text-sm" style={{ color: 'var(--color-graphite-light)' }}>
             © 2026 Lujo · AI Agent 工程实践者
@@ -519,10 +524,10 @@ function Footer() {
         </div>
         <div className="flex items-center gap-6">
           <a href="https://github.com/siYuanJun" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[var(--color-kinpaku)]" style={{ color: 'var(--color-faint)' }}>
-            <GitBranch size={16} />
+            <GitBranch size={18} />
           </a>
           <a href="mailto:siyuanjunr@qq.com" className="transition-colors hover:text-[var(--color-kinpaku)]" style={{ color: 'var(--color-faint)' }}>
-            <Mail size={16} />
+            <Mail size={18} />
           </a>
         </div>
       </div>
