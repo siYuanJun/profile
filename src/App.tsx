@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import {
   Brain, GitBranch, Zap, Code2, Terminal, Cpu, Database,
-  Mail, ArrowRight, ExternalLink, Sparkles, Layers,
-  Workflow, MessageSquare, ChevronDown
+  Mail, ArrowRight, ExternalLink, Layers, Workflow, ChevronDown,
+  Activity, CircuitBoard
 } from 'lucide-react'
 
 /* ============================================================
@@ -13,9 +13,9 @@ const PROJECTS = [
   {
     name: 'CortexLab',
     desc: '数字员工大脑架构实验室 — 3D 人体隐喻可视化 AgentTeams SDK 架构、大脑适配流程与多宿主接入',
-    tags: ['React', 'Three.js', 'React Flow', 'Neo Kinpaku'],
+    tags: ['React', 'Three.js', 'React Flow'],
     url: 'https://github.com/siYuanJun/cortexlab',
-    color: '#d4af37',
+    color: '#00e5ff',
     icon: Brain,
     featured: true,
   },
@@ -24,7 +24,7 @@ const PROJECTS = [
     desc: 'AI 多 Agent 团队体系：团队搭建方法论 + 搭团队元工具 + 派任务元工具 + 垂直团队实例',
     tags: ['Claude Code', 'Agent Teams', 'Methodology'],
     url: 'https://github.com/siYuanJun/harness-team-system',
-    color: '#4a9d8f',
+    color: '#ff2d95',
     icon: Workflow,
     featured: true,
   },
@@ -33,7 +33,7 @@ const PROJECTS = [
     desc: 'Skill 工程可视化：把 SKILL.md 的执行脉络翻译为流程图 + 时间轴 + 信息卡，几秒掌握每个 Skill 怎么跑',
     tags: ['Visualization', 'Skill Engineering'],
     url: 'https://github.com/siYuanJun/skill-flow-viz',
-    color: '#b8941f',
+    color: '#a855f7',
     icon: Layers,
   },
   {
@@ -41,7 +41,7 @@ const PROJECTS = [
     desc: '本体工程师数字员工展示层：Harness 团队 + Skill 工程的对外可视化（Dashboard / KPI / 时间轴）',
     tags: ['Dashboard', 'Digital Employee'],
     url: 'https://github.com/siYuanJun/ontology-brain-visual',
-    color: '#6bb5a5',
+    color: '#00e5ff',
     icon: Cpu,
   },
   {
@@ -49,16 +49,16 @@ const PROJECTS = [
     desc: '本地化 AI 面试辅助工具：实时录制面试官语音，AI 生成贴合你个人背景的回答建议',
     tags: ['AI Tool', 'Local-first', 'Audio'],
     url: 'https://github.com/siYuanJun/interview-tiger',
-    color: '#e8d5a3',
-    icon: MessageSquare,
+    color: '#ff2d95',
+    icon: Zap,
   },
   {
     name: 'Showcase',
     desc: '工程作品集：业务工程 ×4 + 方法论工程 ×5 的统一可视化索引（纯静态 HTML，在线浏览）',
     tags: ['Portfolio', 'Static HTML'],
     url: 'https://siyuanjun.github.io/showcase/',
-    color: '#8b7d5c',
-    icon: Sparkles,
+    color: '#a855f7',
+    icon: Activity,
   },
 ]
 
@@ -72,7 +72,7 @@ const SKILLS = [
   { name: 'React', icon: Cpu, level: '精通' },
   { name: 'FastAPI', icon: Zap, level: '精通' },
   { name: 'LLM / RAG', icon: Database, level: '精通' },
-  { name: 'Three.js', icon: Sparkles, level: '精通' },
+  { name: 'Three.js', icon: Activity, level: '精通' },
   { name: 'Vue', icon: Cpu, level: '精通' },
   { name: 'Git', icon: GitBranch, level: '精通' },
 ]
@@ -82,19 +82,19 @@ const DIRECTIONS = [
     icon: Layers,
     title: 'Skill 工程',
     desc: '将方法论与工作流蒸馏为可复用的 Agent Skills，让经验可沉淀、可调度、可传承',
-    color: '#d4af37',
+    color: '#00e5ff',
   },
   {
     icon: Workflow,
     title: 'Harness 编排',
     desc: '为任意项目构建可被 Claude Code 调度的多 Agent 团队，让 AI 从单次对话变为工程化生产力',
-    color: '#4a9d8f',
+    color: '#ff2d95',
   },
   {
     icon: Zap,
     title: 'AI 应用落地',
     desc: '面向真实场景的 AI 工具与产品，从面试辅助到数字员工，让 AI 真正解决实际问题',
-    color: '#b8941f',
+    color: '#a855f7',
   },
 ]
 
@@ -116,18 +116,24 @@ function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? 'rgba(8, 7, 5, 0.92)' : 'transparent',
+        background: scrolled ? 'rgba(5, 5, 8, 0.92)' : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--color-rule)' : '1px solid transparent',
+        borderBottom: scrolled ? '1px solid rgba(0, 229, 255, 0.2)' : '1px solid transparent',
       }}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 flex items-center justify-center" style={{ background: 'var(--color-kinpaku)', borderRadius: '2px' }}>
-            <Brain size={20} style={{ color: 'var(--color-lacquer)' }} />
+          <div
+            className="w-9 h-9 flex items-center justify-center neon-pulse"
+            style={{ background: 'rgba(0, 229, 255, 0.1)', border: '1px solid #00e5ff' }}
+          >
+            <CircuitBoard size={20} style={{ color: '#00e5ff' }} />
           </div>
-          <span className="text-xl font-medium tracking-wide" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
-            Lujo
+          <span
+            className="text-lg font-bold tracking-[0.2em]"
+            style={{ fontFamily: 'var(--font-display)', color: '#00e5ff' }}
+          >
+            LUJO
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8">
@@ -135,8 +141,8 @@ function Navbar() {
             <a
               key={i}
               href={`#${['about', 'projects', 'skills', 'contact'][i]}`}
-              className="text-sm transition-colors hover:text-[var(--color-kinpaku)]"
-              style={{ color: 'var(--color-graphite-light)' }}
+              className="text-xs tracking-[0.15em] uppercase transition-colors hover:text-[#00e5ff]"
+              style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
             >
               {item}
             </a>
@@ -145,10 +151,9 @@ function Navbar() {
             href="https://github.com/siYuanJun"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2 text-sm transition-all hover:opacity-80"
-            style={{ border: '1px solid var(--color-rule-strong)', borderRadius: '2px', color: 'var(--color-champagne)' }}
+            className="cyber-btn-secondary !py-2 !px-5 !text-xs"
           >
-            <GitBranch size={15} />
+            <GitBranch size={14} />
             GitHub
           </a>
         </div>
@@ -166,11 +171,14 @@ function Hero() {
   const opacity = useTransform(scrollY, [0, 400], [1, 0])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden cyber-grid">
       <motion.div style={{ y, opacity }} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[140px]" style={{ background: 'rgba(212, 175, 55, 0.1)' }} />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[140px]" style={{ background: 'rgba(74, 157, 143, 0.08)' }} />
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[140px]" style={{ background: 'rgba(0, 229, 255, 0.12)' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[140px]" style={{ background: 'rgba(255, 45, 149, 0.1)' }} />
       </motion.div>
+
+      {/* 数据流动画背景 */}
+      <div className="absolute inset-0 data-flow-bg opacity-50" />
 
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto py-20">
         <motion.div
@@ -179,9 +187,9 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-10"
         >
-          <span className="tag tag-gold text-xs px-4 py-1.5">
-            <Sparkles size={12} className="mr-2 inline" />
-            AI Agent 工程实践者
+          <span className="cyber-tag">
+            <Activity size={12} className="mr-2" />
+            SYSTEM ONLINE · AI AGENT ENGINEER
           </span>
         </motion.div>
 
@@ -189,37 +197,47 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 leading-[1.15]"
-          style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)', letterSpacing: '-0.02em' }}
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-[1.2] tracking-tight"
+          style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}
         >
-          热爱不止于代码
+          <span className="neon-text-cyan">CODE</span> IS JUST
           <br />
-          <span className="text-gold-gradient">全心投入 AI 探索之旅</span>
+          THE <span className="neon-gradient">BEGINNING</span>
         </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mb-4"
+        >
+          <p
+            className="text-xl md:text-2xl font-light tracking-wide"
+            style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-muted)' }}
+          >
+            热爱不止于代码 · 全心投入 AI 探索之旅
+          </p>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed"
-          style={{ color: 'var(--color-graphite-light)' }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-sm md:text-base mb-12 max-w-2xl mx-auto leading-relaxed"
+          style={{ color: 'var(--color-text-faint)', fontFamily: 'var(--font-mono)' }}
         >
-          专注 <span className="font-medium" style={{ color: 'var(--color-kinpaku)' }}>Skill 工程</span> 与{' '}
-          <span className="font-medium" style={{ color: 'var(--color-patina)' }}>Harness 编排</span>
-          ，把 AI 从「单次对话助手」推进为「可编排、可治理、可复用」的工程化生产力。
+          <span style={{ color: '#00e5ff' }}>{'>'}</span> 专注 Skill 工程与 Harness 编排
+          <br />
+          <span style={{ color: '#ff2d95' }}>{'>'}</span> 把 AI 从「单次对话助手」推进为「可编排、可治理、可复用」的工程化生产力
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
+          transition={{ duration: 0.6, delay: 1 }}
           className="flex flex-wrap items-center justify-center gap-5"
         >
-          <a
-            href="#projects"
-            className="flex items-center gap-2 px-8 py-3.5 text-sm font-medium transition-all hover:scale-105 glow-gold"
-            style={{ background: 'var(--color-kinpaku)', color: 'var(--color-lacquer)', borderRadius: '2px' }}
-          >
+          <a href="#projects" className="cyber-btn-primary">
             查看精选项目
             <ArrowRight size={16} />
           </a>
@@ -227,8 +245,7 @@ function Hero() {
             href="https://github.com/siYuanJun"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-8 py-3.5 text-sm font-medium transition-all hover:opacity-80"
-            style={{ border: '1px solid var(--color-rule-strong)', color: 'var(--color-champagne)', borderRadius: '2px' }}
+            className="cyber-btn-secondary"
           >
             <GitBranch size={16} />
             GitHub 主页
@@ -236,6 +253,7 @@ function Hero() {
         </motion.div>
       </div>
 
+      {/* 向下滚动提示 */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -243,7 +261,7 @@ function Hero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
         <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
-          <ChevronDown size={28} style={{ color: 'var(--color-graphite)' }} />
+          <ChevronDown size={28} style={{ color: '#00e5ff' }} />
         </motion.div>
       </motion.div>
     </section>
@@ -255,7 +273,7 @@ function Hero() {
    ============================================================ */
 function About() {
   return (
-    <section id="about" className="py-28 px-6">
+    <section id="about" className="py-28 px-6" style={{ background: 'var(--color-bg-deep)' }}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -264,14 +282,14 @@ function About() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
-            <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+            <div className="w-12 h-px" style={{ background: '#00e5ff' }} />
+            <h2 className="section-title text-2xl md:text-3xl" style={{ color: 'var(--color-text)' }}>
               核心方向
             </h2>
-            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
+            <div className="w-12 h-px" style={{ background: '#ff2d95' }} />
           </div>
-          <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-graphite-light)' }}>
-            三个方向，一条主线——让 AI 真正工程化、可复用、可治理。
+          <p className="text-sm max-w-2xl mx-auto" style={{ color: 'var(--color-text-faint)', fontFamily: 'var(--font-mono)' }}>
+            // 三个方向，一条主线——让 AI 真正工程化、可复用、可治理
           </p>
         </motion.div>
 
@@ -284,24 +302,39 @@ function About() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
               whileHover={{ y: -6 }}
-              className="panel p-10 relative overflow-hidden group"
+              className="cyber-panel cyber-corner p-10 relative overflow-hidden group"
             >
+              {/* 顶部霓虹线 */}
               <div
-                className="absolute top-0 left-0 w-full h-0.5 transition-all duration-300 group-hover:h-1"
-                style={{ background: d.color }}
+                className="absolute top-0 left-0 w-full h-0.5 transition-all duration-300"
+                style={{ background: d.color, boxShadow: `0 0 10px ${d.color}` }}
               />
+
               <div
                 className="w-14 h-14 flex items-center justify-center mb-7"
-                style={{ background: `${d.color}15`, borderRadius: '2px' }}
+                style={{ background: `${d.color}10`, border: `1px solid ${d.color}40` }}
               >
                 <d.icon size={28} style={{ color: d.color }} />
               </div>
-              <h3 className="text-2xl font-medium mb-4" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+
+              <h3
+                className="text-xl font-bold mb-4 tracking-wide"
+                style={{ fontFamily: 'var(--font-display)', color: d.color }}
+              >
                 {d.title}
               </h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--color-graphite-light)', lineHeight: '1.9' }}>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)', lineHeight: '1.9' }}>
                 {d.desc}
               </p>
+
+              {/* 底部装饰 */}
+              <div className="mt-8 flex items-center gap-2">
+                <div className="w-2 h-2" style={{ background: d.color, boxShadow: `0 0 6px ${d.color}` }} />
+                <div className="w-8 h-px" style={{ background: `${d.color}60` }} />
+                <span className="text-[10px] tracking-[0.2em] uppercase" style={{ color: d.color, fontFamily: 'var(--font-mono)' }}>
+                  Module_{String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -315,7 +348,7 @@ function About() {
    ============================================================ */
 function Projects() {
   return (
-    <section id="projects" className="py-28 px-6" style={{ background: 'var(--color-lacquer-deep)' }}>
+    <section id="projects" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -324,14 +357,14 @@ function Projects() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
-            <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+            <div className="w-12 h-px" style={{ background: '#00e5ff' }} />
+            <h2 className="section-title text-2xl md:text-3xl" style={{ color: 'var(--color-text)' }}>
               精选项目
             </h2>
-            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
+            <div className="w-12 h-px" style={{ background: '#ff2d95' }} />
           </div>
-          <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-graphite-light)' }}>
-            从方法论到工具，从数字员工到个人辅助——每个项目都是 AI 工程化的一次实践。
+          <p className="text-sm max-w-2xl mx-auto" style={{ color: 'var(--color-text-faint)', fontFamily: 'var(--font-mono)' }}>
+            // 从方法论到工具，从数字员工到个人辅助
           </p>
         </motion.div>
 
@@ -347,40 +380,49 @@ function Projects() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
               whileHover={{ y: -6 }}
-              className="panel p-8 relative overflow-hidden group block"
+              className="cyber-panel p-8 relative overflow-hidden group block"
             >
               {p.featured && (
                 <div className="absolute top-6 right-6 z-10">
-                  <span className="tag tag-gold text-[10px] px-2.5 py-1">精选</span>
+                  <span className="cyber-tag cyber-tag-magenta !text-[10px] !px-2.5 !py-1">
+                    FEATURED
+                  </span>
                 </div>
               )}
+
               <div className="flex items-start gap-5 mb-6">
                 <div
                   className="w-12 h-12 flex items-center justify-center flex-shrink-0"
-                  style={{ background: `${p.color}15`, borderRadius: '2px' }}
+                  style={{ background: `${p.color}10`, border: `1px solid ${p.color}40` }}
                 >
                   <p.icon size={24} style={{ color: p.color }} />
                 </div>
                 <div className="flex-1 min-w-0 pr-12">
-                  <h3 className="text-xl font-medium mb-3 flex items-center gap-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+                  <h3
+                    className="text-lg font-bold mb-3 flex items-center gap-2 tracking-wide"
+                    style={{ fontFamily: 'var(--font-display)', color: p.color }}
+                  >
                     {p.name}
-                    <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" style={{ color: p.color }} />
+                    <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--color-graphite-light)', lineHeight: '1.8' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
                     {p.desc}
                   </p>
                 </div>
               </div>
+
               <div className="flex flex-wrap gap-2.5">
                 {p.tags.map((tag, j) => (
-                  <span key={j} className="tag text-[11px] px-3 py-1" style={{ color: 'var(--color-graphite-light)', borderColor: 'var(--color-rule)', background: 'transparent' }}>
+                  <span key={j} className="cyber-tag !text-[10px] !px-2.5 !py-1">
                     {tag}
                   </span>
                 ))}
               </div>
+
+              {/* 底部霓虹线 */}
               <div
                 className="absolute bottom-0 left-0 h-0.5 transition-all duration-300 group-hover:w-full"
-                style={{ background: p.color, width: p.featured ? '100%' : '0%' }}
+                style={{ background: p.color, boxShadow: `0 0 10px ${p.color}`, width: p.featured ? '100%' : '0%' }}
               />
             </motion.a>
           ))}
@@ -396,10 +438,10 @@ function Projects() {
             href="https://github.com/siYuanJun?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-base transition-colors hover:text-[var(--color-kinpaku)]"
-            style={{ color: 'var(--color-graphite-light)' }}
+            className="inline-flex items-center gap-2 text-sm transition-colors hover:text-[#00e5ff]"
+            style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
           >
-            查看全部仓库
+            // 查看全部仓库
             <ArrowRight size={16} />
           </a>
         </motion.div>
@@ -413,7 +455,7 @@ function Projects() {
    ============================================================ */
 function Skills() {
   return (
-    <section id="skills" className="py-28 px-6">
+    <section id="skills" className="py-28 px-6" style={{ background: 'var(--color-bg-deep)' }}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -422,14 +464,14 @@ function Skills() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
-            <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+            <div className="w-12 h-px" style={{ background: '#00e5ff' }} />
+            <h2 className="section-title text-2xl md:text-3xl" style={{ color: 'var(--color-text)' }}>
               技术栈
             </h2>
-            <div className="w-12 h-px" style={{ background: 'var(--color-rule-strong)' }} />
+            <div className="w-12 h-px" style={{ background: '#ff2d95' }} />
           </div>
-          <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-graphite-light)' }}>
-            从 AI Agent 工程到全栈开发，工具服务于目标。
+          <p className="text-sm max-w-2xl mx-auto" style={{ color: 'var(--color-text-faint)', fontFamily: 'var(--font-mono)' }}>
+            // 从 AI Agent 工程到全栈开发，工具服务于目标
           </p>
         </motion.div>
 
@@ -442,12 +484,12 @@ function Skills() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.04 }}
               whileHover={{ scale: 1.05 }}
-              className="panel p-6 flex items-center gap-4"
+              className="cyber-panel p-6 flex items-center gap-4 group"
             >
-              <s.icon size={24} style={{ color: 'var(--color-kinpaku)', flexShrink: 0 }} />
+              <s.icon size={24} style={{ color: '#00e5ff', flexShrink: 0 }} className="group-hover:neon-text-cyan transition-all" />
               <div className="min-w-0">
-                <div className="text-base font-medium truncate" style={{ color: 'var(--color-champagne)' }}>{s.name}</div>
-                <div className="text-[11px] mt-0.5" style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-mono)' }}>
+                <div className="text-sm font-medium truncate" style={{ color: 'var(--color-text)', fontFamily: 'var(--font-mono)' }}>{s.name}</div>
+                <div className="text-[10px] mt-1 tracking-[0.15em] uppercase" style={{ color: '#00e5ff', fontFamily: 'var(--font-mono)' }}>
                   {s.level}
                 </div>
               </div>
@@ -464,7 +506,7 @@ function Skills() {
    ============================================================ */
 function Contact() {
   return (
-    <section id="contact" className="py-28 px-6" style={{ background: 'var(--color-lacquer-deep)' }}>
+    <section id="contact" className="py-28 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -472,31 +514,30 @@ function Contact() {
           viewport={{ once: true }}
         >
           <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="w-12 h-px" style={{ background: 'var(--color-kinpaku)' }} />
-            <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-champagne)' }}>
+            <div className="w-12 h-px" style={{ background: '#00e5ff' }} />
+            <h2 className="section-title text-2xl md:text-3xl" style={{ color: 'var(--color-text)' }}>
               保持联系
             </h2>
-            <div className="w-12 h-px" style={{ background: 'var(--color-kinpaku)' }} />
+            <div className="w-12 h-px" style={{ background: '#ff2d95' }} />
           </div>
-          <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--color-graphite-light)' }}>
-            对 AI Agent 工程、Skill 工程、Harness 编排感兴趣？欢迎交流，一起探索 AI 的工程化未来。
+
+          <p className="text-base md:text-lg mb-12 max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+            对 AI Agent 工程、Skill 工程、Harness 编排感兴趣？
+            <br />
+            <span style={{ color: '#00e5ff', fontFamily: 'var(--font-mono)' }}>{'>'}</span> 欢迎交流，一起探索 AI 的工程化未来
           </p>
+
           <div className="flex flex-wrap items-center justify-center gap-5">
             <a
               href="https://github.com/siYuanJun"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2.5 px-8 py-3.5 text-sm font-medium transition-all hover:scale-105"
-              style={{ border: '1px solid var(--color-rule-strong)', color: 'var(--color-champagne)', borderRadius: '2px' }}
+              className="cyber-btn-secondary"
             >
               <GitBranch size={18} />
               GitHub
             </a>
-            <a
-              href="mailto:siyuanjunr@qq.com"
-              className="flex items-center gap-2.5 px-8 py-3.5 text-sm font-medium transition-all hover:scale-105 glow-gold"
-              style={{ background: 'var(--color-kinpaku)', color: 'var(--color-lacquer)', borderRadius: '2px' }}
-            >
+            <a href="mailto:siyuanjunr@qq.com" className="cyber-btn-primary">
               <Mail size={18} />
               发送邮件
             </a>
@@ -512,21 +553,21 @@ function Contact() {
    ============================================================ */
 function Footer() {
   return (
-    <footer className="py-10 px-6" style={{ borderTop: '1px solid var(--color-rule)' }}>
+    <footer className="py-10 px-6" style={{ borderTop: '1px solid var(--color-border)', background: 'var(--color-bg-deep)' }}>
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
         <div className="flex items-center gap-3">
-          <div className="w-7 h-7 flex items-center justify-center" style={{ background: 'var(--color-kinpaku)', borderRadius: '2px' }}>
-            <Brain size={16} style={{ color: 'var(--color-lacquer)' }} />
+          <div className="w-7 h-7 flex items-center justify-center" style={{ background: 'rgba(0, 229, 255, 0.1)', border: '1px solid #00e5ff40' }}>
+            <CircuitBoard size={14} style={{ color: '#00e5ff' }} />
           </div>
-          <span className="text-sm" style={{ color: 'var(--color-graphite-light)' }}>
-            © 2026 Lujo · AI Agent 工程实践者
+          <span className="text-xs tracking-[0.15em]" style={{ color: 'var(--color-text-faint)', fontFamily: 'var(--font-mono)' }}>
+            © 2026 LUJO · AI AGENT ENGINEER
           </span>
         </div>
         <div className="flex items-center gap-6">
-          <a href="https://github.com/siYuanJun" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[var(--color-kinpaku)]" style={{ color: 'var(--color-faint)' }}>
+          <a href="https://github.com/siYuanJun" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#00e5ff]" style={{ color: 'var(--color-text-faint)' }}>
             <GitBranch size={18} />
           </a>
-          <a href="mailto:siyuanjunr@qq.com" className="transition-colors hover:text-[var(--color-kinpaku)]" style={{ color: 'var(--color-faint)' }}>
+          <a href="mailto:siyuanjunr@qq.com" className="transition-colors hover:text-[#00e5ff]" style={{ color: 'var(--color-text-faint)' }}>
             <Mail size={18} />
           </a>
         </div>
@@ -540,7 +581,7 @@ function Footer() {
    ============================================================ */
 export default function App() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative scanlines">
       <div className="noise-overlay" />
       <Navbar />
       <Hero />
